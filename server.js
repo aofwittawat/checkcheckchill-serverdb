@@ -4,7 +4,11 @@ const connectDB = require('./config/db')
 const app = express()
 
 // Connect DB
-connectDB
+connectDB()
+
+
+//Init Middleware
+app.use(express.json({ extended: false }))
 
 app.get('/', (req,res) => res.send('API Running'))
 
@@ -12,7 +16,7 @@ app.get('/', (req,res) => res.send('API Running'))
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/auth', require('./routes/api/auth'))
 app.use('/api/resultmale', require('./routes/api/resultmale'))
-app.use('/api/resultfemale', require('./routes/api/resultmale'))
+// app.use('/api/resultfemale', require('./routes/api/resultfemale'))
 
 const PORT = process.env.PORT || 5000
 
